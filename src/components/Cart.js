@@ -1,12 +1,22 @@
 import { useState } from 'react'
 import '../styles/Cart.css';
 
+function removeAllItemsCart() {
+  let cart = [];
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
 function Cart(props) {
 	const { cart, updateCart } = props
 	const [isOpen, setIsOpen] = useState(true)
   const total = cart.reduce(
     (acc, plantType) => acc + plantType.amount * plantType.price, 0
   )
+
+  function EmptyCart() {
+    removeAllItemsCart();
+    updateCart([]);
+  }
 
 	return isOpen ? (
 		<div className='jh-cart'>
@@ -36,7 +46,7 @@ function Cart(props) {
             </tbody>
           </table>
           <h3>Total: {total}€</h3>
-          <button onClick={() => updateCart([])}>Empty Cart</button>
+          <button onClick={() => EmptyCart()}>Empty Cart</button>
         </div>
       ) : (
         <div>Your cart is empty</div>

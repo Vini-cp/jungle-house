@@ -1,6 +1,30 @@
 import CareScale from './CareScale'
 import '../styles/PlantItem.css'
 
+function getLocalCart() {
+  let cart;
+  if (localStorage.getItem('cart') === null) {
+    cart = [];
+  } else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+  }
+  return cart;
+}
+
+function saveLocalCart(item) {
+  let cart = getLocalCart();
+  const index = cart.findIndex(obj => obj.name === item.name);
+  if (index >= 0) {
+    const element = cart[index];
+    element.amount += 1;
+    cart.splice(index, 1);
+    cart = [...cart, element];
+  } else {
+    cart.push(item);
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
 function mouseEnter(e) {
   if ( document.getElementById(e.target.id) !== null ) {
     document.getElementById(e.target.id).classList.add('image-hover');
@@ -30,8 +54,10 @@ function PlantItem(props) {
       const element = cart[index];
       element.amount += 1;
       cart.splice(index, 1);
+      saveLocalCart(element);
       updateCart([...cart, element]);
     } else {
+      saveLocalCart({name, price, amount: 1});
       updateCart([...cart, {name, price, amount: 1}]);
     }
   }

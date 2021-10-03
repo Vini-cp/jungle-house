@@ -7,8 +7,26 @@ import Categories from './Categories'
 import '../styles/App.css';
 import '../styles/Layout.css';
 
+function getLocalCart() {
+  let cart;
+  if (localStorage.getItem('cart') === null) {
+    cart = [];
+  } else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+  }
+  return cart;
+}
+
+// function removeItemCart(item) {
+//   let cart = getLocalCart();
+//   const itemIndex = cart.indexOf(item);
+//   cart.splice(itemIndex, 1);
+//   localStorage.setItem('cart', JSON.stringify(cart));
+// }
+
 function App() {
-  const [cart, updateCart] = useState([])
+  const cartLocal = getLocalCart();
+  const [cart, updateCart] = useState(cartLocal)
   const [plants, updatePlants] = useState("")
 
   return (
