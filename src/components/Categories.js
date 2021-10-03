@@ -2,7 +2,7 @@ import { plantList } from '../datas/plantList'
 import '../styles/Categories.css'
 
 function Categories(props) {
-  const { plants, updatePlants } = props
+  const { updatePlants } = props
   const categories = plantList.map(plant => plant.category);
   const uniqueCategories = categories.filter((item, i, ar) => ar.indexOf(item) === i);
 

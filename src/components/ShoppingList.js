@@ -4,25 +4,22 @@ import '../styles/ShoppingList.css'
 
 function ShoppingList(props) {
   const { cart, updateCart, plants } = props
-
   return (
 		<div className="jh-shopping-list">
 			<ul className='jh-plant-list'>
-				{plantList.map(({ id, name, cover, light, water, category } ) => (
+				{plantList.map(({ id, name, cover, light, water, category, price } ) => (
           <div key={id}>
-            {plants != "" && plants != "default" ? (
+            {plants !== "" && plants !== "default" ? (
               <div>
-                {plants == category ? (
+                {plants === category ? (
                   <div> 
-                    <PlantItem id={id} name={name} cover={cover} light={light} water={water} />
-                    <button onClick={() => updateCart(cart + 1)}>Add</button>
+                    <PlantItem id={id} name={name} cover={cover} light={light} water={water} price={price} cart={cart} updateCart={updateCart} />
                   </div>
                 ) : null}
               </div>
               ) : (
               <div> 
-                <PlantItem id={id} name={name} cover={cover} light={light} water={water} />
-                <button onClick={() => updateCart(cart + 1)}>Add</button>
+                <PlantItem id={id} name={name} cover={cover} light={light} water={water} price={price} cart={cart} updateCart={updateCart}/>
               </div>
             )}
           </div>

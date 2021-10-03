@@ -1,8 +1,45 @@
-.jh-plant-item-cover {
-	height: 250px;
+.container {
+  position: relative;
+  height: 250px;
 	width: 250px;
+  margin-bottom: 10px;
+  /* display:block; */
+}
+
+.jh-plant-item-cover {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  position: absolute;
+  transition: .7s ease;
 	border-radius: 20px;
+  border: 1px solid;
 	object-fit: cover;
+}
+
+.image-hover {
+  cursor: pointer;
+  transition: 0.7s ease;
+  opacity: 0.15;
+}
+
+
+.middle {
+  transition: .5s ease;
+  position: relative;
+  top: 115px;
+  left: 30px;
+  width: 50%;
+  z-index: 90;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #04AA6D;
+  color: white;
+  font-size: 20px;
+  padding: 16px 32px;
+  display: none;
 }
 
 .jh-plant-item {

@@ -9,8 +9,7 @@ import '../styles/Layout.css';
 
 function App() {
   const [cart, updateCart] = useState([])
-  const [plants, updatePlants] = useState([])
-  console.log(plants)
+  const [plants, updatePlants] = useState("")
 
   return (
     <div>
